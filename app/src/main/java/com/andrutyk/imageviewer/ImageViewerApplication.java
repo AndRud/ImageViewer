@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 /**
  * Created by admin on 22.08.2016.
  */
-public class ImageViewerVApplication extends Application {
+public class ImageViewerApplication extends Application {
 
     public static final boolean DEVELOPER_MODE = false;
 
