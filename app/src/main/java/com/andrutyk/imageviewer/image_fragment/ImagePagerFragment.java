@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -68,5 +70,18 @@ public class ImagePagerFragment extends Fragment implements ImageListView {
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.item_add_to_favorite:
+                imageListPresenter.setFavorite(pager.getCurrentItem(), true);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

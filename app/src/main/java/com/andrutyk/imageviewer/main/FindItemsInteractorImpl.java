@@ -6,6 +6,7 @@ import android.os.Handler;
 import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.models.ImageModel;
 import com.andrutyk.imageviewer.utils.JSONResourceReader;
+import com.andrutyk.imageviewer.utils.PrefUtils;
 
 import org.json.JSONObject;
 
@@ -23,9 +24,20 @@ public class FindItemsInteractorImpl implements FindItemsInteractor {
         listener.onFinished(createListFromJSON(context));
     }
 
+    @Override
+    public void setFavorite(Context context, int id, boolean value) {
+        JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
+        resourceReader.setFavorite(id, value);
+    }
+
     private List<JSONObject> createListFromJSON(Context context) {
-        JSONResourceReader resourceReader = new JSONResourceReader(context.getResources(), R.raw.images);
+        JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
         ArrayList<JSONObject> images = resourceReader.getAllImagesFromJSON();
         return images;
+    }
+
+    @Override
+    public void setComment(Context context, int id, String value) {
+
     }
 }

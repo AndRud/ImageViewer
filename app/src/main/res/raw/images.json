@@ -1,24 +1,18 @@
 {
     "images":
     [
-      {
-      "id": 1,
-      "ordNum": 1,
-      "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_031242_.jpg",
-      "comment": "Comment 1",
-      "isFavorite": false
-    }, {
-      "id": 2,
-      "ordNum": 2,
-      "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_031282_.jpg",
-      "comment": "Comment 2",
-      "isFavorite": false
-    }, {
-      "id": 3,
-      "ordNum": 3,
-      "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_2012_030669_.jpg",
-      "comment": "Comment 3",
-      "isFavorite": false
-    }
-  ]
+        {
+          "id": 0,
+          "ordNum": 1,
+          "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_031242_.jpg"
+        }, {
+          "id": 1,
+          "ordNum": 2,
+          "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_031282_.jpg"
+        }, {
+          "id": 2,
+          "ordNum": 3,
+          "url": "http://www.zastavki.com/pictures/1920x1200/2011/Auto_BMW_M5_BMW-M5_2012_030669_.jpg"
+        }
+    ]
 }

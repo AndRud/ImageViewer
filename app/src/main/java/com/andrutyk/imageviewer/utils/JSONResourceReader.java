@@ -1,5 +1,6 @@
 package com.andrutyk.imageviewer.utils;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
 
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -23,18 +25,26 @@ import java.util.ArrayList;
  */
 public class JSONResourceReader {
 
-    private String jsonString;
     private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
+    private static final String JSON_ARR_HEAD_NAME = "images";
+    private static final String JSON_PROPER_IS_FAVORITE = "isFavorite";
+    private static final String JSON_COMMENT = "comment";
+
+    private String jsonString;
+    private Context context;
+
+    private PrefUtils prefUtils;
 
     /**
      * Read from a resources file and create a {@link JSONResourceReader} object that will allow the creation of other
      * objects from this resource.
      *
-     * @param resources An application {@link Resources} object.
+     * @param context An application {@link Context} object.
      * @param id        The id for the resource to load, typically held in the raw/ folder.
      */
-    public JSONResourceReader(Resources resources, int id) {
-        InputStream resourceReader = resources.openRawResource(id);
+    public JSONResourceReader(Context context, int id) {
+        this.context = context;
+        InputStream resourceReader = context.getResources().openRawResource(id);
         Writer writer = new StringWriter();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, "UTF-8"));
@@ -54,19 +64,31 @@ public class JSONResourceReader {
         }
 
         jsonString = writer.toString();
+        prefUtils = new PrefUtils(context);
     }
 
     public ArrayList<JSONObject> getAllImagesFromJSON() {
         ArrayList<JSONObject> arrayList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
-            JSONArray jsonArrayImages = jsonObject.getJSONArray("images");
-            for (int i = 0; i < jsonArrayImages.length(); i++) {;
-                arrayList.add(jsonArrayImages.getJSONObject(i));
+            JSONArray jsonArrayImages = jsonObject.getJSONArray(JSON_ARR_HEAD_NAME);
+            for (int i = 0; i < jsonArrayImages.length(); i++) {
+                JSONObject imageObject = jsonArrayImages.getJSONObject(i);
+                imageObject.put(JSON_PROPER_IS_FAVORITE , prefUtils.isFavorite(i));
+                imageObject.put(JSON_COMMENT , prefUtils.getComment(i));
+                arrayList.add(imageObject);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return arrayList;
+    }
+
+    public void setFavorite(int id, boolean value) {
+        prefUtils.setFavorite(id, value);
+    }
+
+    public void setComment(int id, String value) {
+        prefUtils.setComment(id, value);
     }
 }

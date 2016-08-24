@@ -16,4 +16,8 @@ public interface FindItemsInteractor {
     }
 
     void findItems(Context context, OnFinishedListener listener);
+
+    void setFavorite(Context context, int id, boolean value);
+
+    void setComment(Context context, int id, String value);
 }

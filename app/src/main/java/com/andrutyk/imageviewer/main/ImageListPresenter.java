@@ -7,6 +7,8 @@ public interface ImageListPresenter {
 
     void onResume();
 
+    void setFavorite(int position, boolean isFavorite);
+
     void onItemClicked(int position);
 
     void onDestroy();

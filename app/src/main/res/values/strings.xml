@@ -12,4 +12,9 @@
     <string name="downloads_are_denied">Downloads are denied</string>
     <string name="out_of_memory_error">Out Of Memory error</string>
     <string name="unknown_error">Unknown error</string>
+
+    <!-- Image context menu items -->
+    <string name="item_add_to_favorite_title">Add to "Favorite"</string>
+    <string name="item_del_from_favorite_title">Delete from "Favorite"</string>
+
 </resources>

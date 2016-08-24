@@ -5,8 +5,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
@@ -59,5 +61,14 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if (v.getId() == R.id.ivImage) {
+            getMenuInflater().inflate(R.menu.image_context_menu, menu);
+        }
     }
 }
