@@ -1,8 +1,10 @@
-package com.andrutyk.imageviewer.main;
+package com.andrutyk.imageviewer.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.andrutyk.imageviewer.image_fragment.PageFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

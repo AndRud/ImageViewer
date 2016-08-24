@@ -1,4 +1,4 @@
-package com.andrutyk.imageviewer.main;
+package com.andrutyk.imageviewer.animations;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.andrutyk.imageviewer.main;
+package com.andrutyk.imageviewer.image_fragment;
 
 
 import android.os.Bundle;
@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andrutyk.imageviewer.R;
+import com.andrutyk.imageviewer.adapters.ImagesPagerAdapter;
+import com.andrutyk.imageviewer.animations.ZoomOutPageTransformer;
+import com.andrutyk.imageviewer.main.FindItemsInteractorImpl;
+import com.andrutyk.imageviewer.main.ImageListPresenter;
+import com.andrutyk.imageviewer.main.ImageListPresenterImpl;
+import com.andrutyk.imageviewer.main.ImageListView;
 
 import org.json.JSONObject;
 
@@ -19,7 +25,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ImagePagerFragment extends Fragment implements ImageListView{
+public class ImagePagerFragment extends Fragment implements ImageListView {
 
     private ImageListPresenter imageListPresenter;
 

@@ -1,7 +1,6 @@
-package com.andrutyk.imageviewer.main;
+package com.andrutyk.imageviewer.image_fragment;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrutyk.imageviewer.R;
@@ -20,8 +18,6 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-
-import java.util.Random;
 
 /**
  * Created by admin on 23.08.2016.
@@ -36,7 +32,7 @@ public class PageFragment extends Fragment {
 
     private DisplayImageOptions options;
 
-    static PageFragment newInstance(int page, String url) {
+    public static PageFragment newInstance(int page, String url) {
         PageFragment pageFragment = new PageFragment();
         Bundle arguments = new Bundle();
         arguments.putInt(ARGUMENT_PAGE_NUMBER, page);

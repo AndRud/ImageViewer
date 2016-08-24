@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.andrutyk.imageviewer.R;
+import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
 
 public class MainActivity extends AppCompatActivity{
 
