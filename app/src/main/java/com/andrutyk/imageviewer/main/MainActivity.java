@@ -3,21 +3,29 @@ package com.andrutyk.imageviewer.main;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener{
 
     private final static String FRAGMENT_TAG = "main_fragment";
 
     private Fragment fragmentMain;
+
+    private String[] categories;
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,19 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         addFragment();
+        initDrawerLayout();
+    }
+
+    private void initDrawerLayout(){
+        categories = getResources().getStringArray(R.array.categories_array);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.left_drawer);
+
+        // Set the adapter for the list view
+        drawerList.setAdapter(new ArrayAdapter<>(this,
+                R.layout.drawer_list_item, categories));
+        // Set the list's click listener
+        drawerList.setOnItemClickListener(this);
     }
 
     private void addFragment() {
@@ -70,5 +91,15 @@ public class MainActivity extends AppCompatActivity{
         if (v.getId() == R.id.ivImage) {
             getMenuInflater().inflate(R.menu.image_context_menu, menu);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        selectDrawerItem(position);
+    }
+
+    private void selectDrawerItem(int position) {
+        drawerList.setItemChecked(position, true);
+        drawerLayout.closeDrawer(drawerList);
     }
 }

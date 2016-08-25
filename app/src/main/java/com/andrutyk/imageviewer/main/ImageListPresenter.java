@@ -9,7 +9,7 @@ public interface ImageListPresenter {
 
     void setFavorite(int position, boolean isFavorite);
 
-    void onItemClicked(int position);
+    void setComment(int position, String comment);
 
     void onDestroy();
 }

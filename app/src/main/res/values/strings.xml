@@ -17,4 +17,11 @@
     <string name="item_add_to_favorite_title">Add to "Favorite"</string>
     <string name="item_del_from_favorite_title">Delete from "Favorite"</string>
 
+    <!-- Strings for DrawerLayout -->
+    <string-array
+        name="categories_array">
+        <item>All images</item>
+        <item>Favorite</item>
+    </string-array>
+
 </resources>

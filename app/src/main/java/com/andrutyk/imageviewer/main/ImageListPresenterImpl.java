@@ -11,8 +11,6 @@ import java.util.List;
  */
 public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInteractor.OnFinishedListener{
 
-    private final static String PROP_IS_FAVORITE_NAME = "isFavorite";
-
     private Context context;
     private ImageListView imageListView;
     private FindItemsInteractor findItemsInteractor;
@@ -30,12 +28,12 @@ public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInte
 
     @Override
     public void setFavorite(int position, boolean isFavorite) {
-        findItemsInteractor.setFavorite(context, position, true);
+        findItemsInteractor.setFavorite(context, position, isFavorite, this);
     }
 
     @Override
-    public void onItemClicked(int position) {
-        imageListView.showMessage(String.format("Position %d clicked", position + 1));
+    public void setComment(int position, String comment) {
+        findItemsInteractor.setComment(context, position, comment, this);
     }
 
     @Override
