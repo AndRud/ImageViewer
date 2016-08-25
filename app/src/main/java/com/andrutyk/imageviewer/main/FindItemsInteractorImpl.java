@@ -19,28 +19,35 @@ import java.util.List;
  */
 public class FindItemsInteractorImpl implements FindItemsInteractor {
 
-    @Override
-    public void findItems(Context context, OnFinishedListener listener) {
-        listener.onFinished(createListFromJSON(context));
+    public final static String CATEGORY_ALL = "all_images";
+    public final static String CATEGORY_FAVORITE = "favorite";
+
+    private Context context;
+
+    public FindItemsInteractorImpl(Context context) {
+        this.context = context;
     }
 
     @Override
-    public void setFavorite(Context context, int id, boolean value, OnFinishedListener listener) {
+    public void findItems(String category, OnFinishedListener listener) {
+        listener.onFinished(createListFromJSON(category));
+    }
+
+    @Override
+    public void setFavorite(int id, boolean value, OnFinishedListener listener) {
         JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
         resourceReader.setFavorite(id, value);
-        listener.onFinished(createListFromJSON(context));
     }
 
     @Override
-    public void setComment(Context context, int id, String value, OnFinishedListener listener) {
+    public void setComment(int id, String value, OnFinishedListener listener) {
         JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
         resourceReader.setComment(id, value);
-        listener.onFinished(createListFromJSON(context));
     }
 
-    private List<JSONObject> createListFromJSON(Context context) {
+    private List<JSONObject> createListFromJSON(String category) {
         JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
-        ArrayList<JSONObject> images = resourceReader.getAllImagesFromJSON();
+        ArrayList<JSONObject> images = resourceReader.getImagesByCategory(category);
         return images;
     }
 }

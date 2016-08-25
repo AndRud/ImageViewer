@@ -10,5 +10,5 @@ import java.util.List;
 public interface  ImageListView {
     void setItems(List<JSONObject> items);
 
-    void showMessage(String message);
+
 }

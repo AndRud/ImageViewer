@@ -44,7 +44,6 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
         url = getArguments().getString(ARGUMENT_PAGE_URL);
     }
@@ -54,12 +53,9 @@ public class PageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_page, null);
-
         final ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
         registerForContextMenu(ivImage);
-
         final ProgressBar pbLoading = (ProgressBar) view.findViewById(R.id.pbLoading);
-
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.mipmap.ic_empty)
                 .showImageOnFail(R.mipmap.ic_error)
@@ -92,7 +88,7 @@ public class PageFragment extends Fragment {
         return view;
     }
 
-    public String getErrMessage(FailReason failReason){
+    public String getErrMessage(FailReason failReason) {
         String message = null;
         switch (failReason.getType()) {
             case IO_ERROR:

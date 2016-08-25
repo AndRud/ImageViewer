@@ -5,7 +5,9 @@ package com.andrutyk.imageviewer.main;
  */
 public interface ImageListPresenter {
 
-    void onResume();
+    void onResume(String category);
+
+    void getDataByCategory(String category);
 
     void setFavorite(int position, boolean isFavorite);
 

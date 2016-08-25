@@ -1,5 +1,6 @@
 package com.andrutyk.imageviewer.main;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.ListView;
 
 import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
+import com.andrutyk.imageviewer.preference.ImagePreferenceActivity;
+import com.andrutyk.imageviewer.preference.ImagePreferenceFragment;
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener{
 
@@ -34,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        addFragment();
         initDrawerLayout();
+        addFragment();
     }
 
     private void initDrawerLayout(){
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, ImagePreferenceActivity.class));
             return true;
         }
 
@@ -95,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        if (fragmentMain != null) {
+            ((ImagePagerFragment)fragmentMain).setCategory(position);
+        }
         selectDrawerItem(position);
     }
 

@@ -18,10 +18,32 @@
     <string name="item_del_from_favorite_title">Delete from "Favorite"</string>
 
     <!-- Strings for DrawerLayout -->
-    <string-array
-        name="categories_array">
+    <string-array name="categories_array">
         <item>All images</item>
         <item>Favorite</item>
     </string-array>
 
+    <!-- Preference strings -->
+    <string name="category_time">Time</string>
+    <string name="turn_auto_key">auto_turning_pictures</string>
+    <string name="turn_auto_title">Turning</string>
+    <string name="turn_auto_summary">Automatic turning pictures</string>
+    <string name="time_to_change_key">time_to_change</string>
+    <string name="time_to_change_title">Time</string>
+    <string name="time_to_change_summary">Time to change pictures (sec)</string>
+
+    <string name="category_order">Order</string>
+    <string name="order_key">order</string>
+    <string name="order_title">Order</string>
+    <string name="order_summary">Choose order</string>
+    <string-array name="order_names">
+        <item>Show by ordinal number</item>
+        <item>Random</item>
+    </string-array>
+    <string-array name="order_values">
+        <item>show_by_ordinal_number</item>
+        <item>random</item>
+    </string-array>
+
+    <string name="category_anim">Animation</string>
 </resources>

@@ -11,29 +11,32 @@ import java.util.List;
  */
 public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInteractor.OnFinishedListener{
 
-    private Context context;
     private ImageListView imageListView;
     private FindItemsInteractor findItemsInteractor;
 
-    public ImageListPresenterImpl(Context context, ImageListView imageListView, FindItemsInteractor findItemsInteractor) {
-        this.context = context;
+    public ImageListPresenterImpl(ImageListView imageListView, FindItemsInteractor findItemsInteractor) {
         this.imageListView = imageListView;
         this.findItemsInteractor = findItemsInteractor;
     }
 
     @Override
-    public void onResume() {
-        findItemsInteractor.findItems(context, this);
+    public void onResume(String category) {
+        findItemsInteractor.findItems(category, this);
+    }
+
+    @Override
+    public void getDataByCategory(String category) {
+        findItemsInteractor.findItems(category, this);
     }
 
     @Override
     public void setFavorite(int position, boolean isFavorite) {
-        findItemsInteractor.setFavorite(context, position, isFavorite, this);
+        findItemsInteractor.setFavorite(position, isFavorite, this);
     }
 
     @Override
     public void setComment(int position, String comment) {
-        findItemsInteractor.setComment(context, position, comment, this);
+        findItemsInteractor.setComment(position, comment, this);
     }
 
     @Override
