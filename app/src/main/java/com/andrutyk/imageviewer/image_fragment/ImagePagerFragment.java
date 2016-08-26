@@ -108,6 +108,9 @@ public class ImagePagerFragment extends Fragment implements ImageListView {
     @Override
     public void setItems(List<JSONObject> items) {
         data = (ArrayList<JSONObject>) items;
+        if (pagerAdapter != null) {
+            pagerAdapter = null;
+        }
         pagerAdapter = new ImagesPagerAdapter(getActivity().getSupportFragmentManager(), data);
         pager.setAdapter(pagerAdapter);
     }
