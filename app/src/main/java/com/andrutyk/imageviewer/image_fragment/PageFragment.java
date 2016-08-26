@@ -4,7 +4,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -24,19 +28,19 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
  */
 public class PageFragment extends Fragment {
 
-    private static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
     private static final String ARGUMENT_PAGE_URL = "arg_page_url";
+    private static final String ARGUMENT_PAGE_CATEGORY = "arg_page_category";
 
-    private int pageNumber;
     private String url;
+    private boolean isFavorite;
 
     private DisplayImageOptions options;
 
-    public static PageFragment newInstance(int page, String url) {
+    public static PageFragment newInstance(String url, boolean isFavorite) {
         PageFragment pageFragment = new PageFragment();
         Bundle arguments = new Bundle();
-        arguments.putInt(ARGUMENT_PAGE_NUMBER, page);
         arguments.putString(ARGUMENT_PAGE_URL, url);
+        arguments.putBoolean(ARGUMENT_PAGE_CATEGORY, isFavorite);
         pageFragment.setArguments(arguments);
         return pageFragment;
     }
@@ -44,8 +48,8 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
         url = getArguments().getString(ARGUMENT_PAGE_URL);
+        isFavorite = getArguments().getBoolean(ARGUMENT_PAGE_CATEGORY);
     }
 
     @Nullable

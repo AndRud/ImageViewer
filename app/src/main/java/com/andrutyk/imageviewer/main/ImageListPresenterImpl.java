@@ -20,13 +20,8 @@ public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInte
     }
 
     @Override
-    public void onResume(String category) {
-        findItemsInteractor.findItems(category, this);
-    }
-
-    @Override
-    public void getDataByCategory(String category) {
-        findItemsInteractor.findItems(category, this);
+    public void getDataByCategory(String category, boolean sortByOrdinal) {
+        findItemsInteractor.findItems(category, sortByOrdinal, this);
     }
 
     @Override

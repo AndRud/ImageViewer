@@ -9,6 +9,4 @@ import java.util.List;
  */
 public interface  ImageListView {
     void setItems(List<JSONObject> items);
-
-
 }

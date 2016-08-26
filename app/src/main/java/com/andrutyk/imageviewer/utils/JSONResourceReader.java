@@ -5,21 +5,18 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.andrutyk.imageviewer.main.FindItemsInteractorImpl;
-import com.andrutyk.imageviewer.models.ImageModel;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by admin on 22.08.2016.
@@ -66,7 +63,7 @@ public class JSONResourceReader {
         prefUtils = new PrefUtils(context);
     }
 
-    public ArrayList<JSONObject> getImagesByCategory(String category) {
+    public ArrayList<JSONObject> getImagesByCategory(String category, boolean sortByOrdinal) {
         ArrayList<JSONObject> arrayList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -80,6 +77,9 @@ public class JSONResourceReader {
                     arrayList.add(imageObject);
                 } else if (category.equals(FindItemsInteractorImpl.CATEGORY_FAVORITE) && imageIsFavorite) {
                     arrayList.add(imageObject);
+                }
+                if (!sortByOrdinal) {
+                    Collections.shuffle(arrayList);
                 }
             }
         } catch (JSONException e) {

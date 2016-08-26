@@ -28,14 +28,15 @@
     <string name="turn_auto_key">auto_turning_pictures</string>
     <string name="turn_auto_title">Turning</string>
     <string name="turn_auto_summary">Automatic turning pictures</string>
-    <string name="time_to_change_key">time_to_change</string>
-    <string name="time_to_change_title">Time</string>
-    <string name="time_to_change_summary">Time to change pictures (sec)</string>
+    <string name="time_to_slide_key">time_to_slide</string>
+    <string name="time_to_slide_title">Time</string>
+    <string name="time_to_slide_summary">Time to slide pictures (sec)</string>
 
     <string name="category_order">Order</string>
     <string name="order_key">order</string>
     <string name="order_title">Order</string>
     <string name="order_summary">Choose order</string>
+    <string name="order_def_value">show_by_ordinal_number</string>
     <string-array name="order_names">
         <item>Show by ordinal number</item>
         <item>Random</item>
@@ -46,4 +47,23 @@
     </string-array>
 
     <string name="category_anim">Animation</string>
+    <string name="anim_key">anim</string>
+    <string name="anim_title">Anim</string>
+    <string name="anim_summary">Choose animation</string>
+    <string name="anim_def_value">none_anim</string>
+    <string-array name="anim_names">
+        <item>None</item>
+        <item>Zoom-out transform animation</item>
+        <item>Depth transform animation</item>
+    </string-array>
+    <string-array name="anim_values">
+        <item>none_anim</item>
+        <item>zoom_out_anim</item>
+        <item>depth_anim</item>
+    </string-array>
+
+    <!-- DrawerLayoyt strings -->
+    <string name="drawer_open">Drawer open</string>
+    <string name="drawer_close">Drawer close</string>
+
 </resources>

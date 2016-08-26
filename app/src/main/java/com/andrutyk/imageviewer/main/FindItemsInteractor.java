@@ -15,7 +15,7 @@ public interface FindItemsInteractor {
         void onFinished(List<JSONObject> items);
     }
 
-    void findItems(String category, OnFinishedListener listener);
+    void findItems(String category, boolean sortByOrdinal, OnFinishedListener listener);
 
     void setFavorite(int id, boolean value, OnFinishedListener listener);
 

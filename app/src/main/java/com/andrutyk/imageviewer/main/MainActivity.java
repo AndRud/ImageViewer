@@ -1,10 +1,12 @@
 package com.andrutyk.imageviewer.main;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
@@ -18,9 +20,8 @@ import android.widget.ListView;
 import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
 import com.andrutyk.imageviewer.preference.ImagePreferenceActivity;
-import com.andrutyk.imageviewer.preference.ImagePreferenceFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private final static String FRAGMENT_TAG = "main_fragment";
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private String[] categories;
     private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
     private ListView drawerList;
 
     @Override
@@ -36,27 +38,35 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         initDrawerLayout();
         addFragment();
     }
 
-    private void initDrawerLayout(){
+    private void initDrawerLayout() {
         categories = getResources().getStringArray(R.array.categories_array);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
-
-        // Set the adapter for the list view
         drawerList.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, categories));
-        // Set the list's click listener
         drawerList.setOnItemClickListener(this);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, null,
+                R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+                invalidateOptionsMenu();
+            }
+        };
+        drawerLayout.addDrawerListener(drawerToggle);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+        selectDrawerItem(0);
     }
 
     private void addFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentMain = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
-        if (fragmentMain == null){
+        if (fragmentMain == null) {
             fragmentMain = new ImagePagerFragment();
             fragmentTransaction.add(R.id.fragmentContent, fragmentMain, FRAGMENT_TAG);
         } else {
@@ -67,21 +77,27 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void setTitle(CharSequence title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        } else {
+            setTitle(title);
+        }
+    }
 
-        //noinspection SimplifiableIfStatement
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, ImagePreferenceActivity.class));
+            return true;
+        }
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -91,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-
         if (v.getId() == R.id.ivImage) {
             getMenuInflater().inflate(R.menu.image_context_menu, menu);
         }
@@ -100,13 +115,28 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         if (fragmentMain != null) {
-            ((ImagePagerFragment)fragmentMain).setCategory(position);
+            ((ImagePagerFragment) fragmentMain).setCategory(position);
         }
         selectDrawerItem(position);
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
     private void selectDrawerItem(int position) {
-        drawerList.setItemChecked(position, true);
+        drawerList.setItemChecked(position, false);
         drawerLayout.closeDrawer(drawerList);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(categories[position]);
+        }
     }
 }

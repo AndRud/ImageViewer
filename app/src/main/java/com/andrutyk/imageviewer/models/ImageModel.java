@@ -3,7 +3,7 @@ package com.andrutyk.imageviewer.models;
 import org.json.JSONObject;
 
 /**
- * Created by admin on 22.08.2016.
+ * Don't delete. Make a partition JSON through GSON!!!
  */
 public class ImageModel extends JSONObject{
 

@@ -8,10 +8,12 @@
             android:summary="@string/turn_auto_summary"
             android:defaultValue="true"/>
         <EditTextPreference
-            android:key="@string/time_to_change_key"
-            android:title="@string/time_to_change_title"
-            android:summary="@string/time_to_change_summary"
-            android:defaultValue="5"/>
+            android:key="@string/time_to_slide_key"
+            android:title="@string/time_to_slide_title"
+            android:summary="@string/time_to_slide_summary"
+            android:defaultValue="5"
+            android:inputType="number"
+            android:dependency="@string/turn_auto_key"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -21,16 +23,18 @@
             android:summary="@string/order_title"
             android:title="@string/order_summary"
             android:entries="@array/order_names"
-            android:entryValues="@array/order_values"/>
+            android:entryValues="@array/order_values"
+            android:defaultValue="@string/order_def_value"/>
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/category_anim">
         <ListPreference
-            android:key="@string/order_key"
-            android:summary="@string/order_title"
-            android:title="@string/order_summary"
-            android:entries="@array/order_names"
-            android:entryValues="@array/order_values"/>
+            android:key="@string/anim_key"
+            android:summary="@string/anim_summary"
+            android:title="@string/anim_title"
+            android:entries="@array/anim_names"
+            android:entryValues="@array/anim_values"
+            android:defaultValue="@string/anim_def_value"/>
     </PreferenceCategory>
 </PreferenceScreen>

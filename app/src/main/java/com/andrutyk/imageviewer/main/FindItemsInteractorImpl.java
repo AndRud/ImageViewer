@@ -4,14 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.andrutyk.imageviewer.R;
-import com.andrutyk.imageviewer.models.ImageModel;
 import com.andrutyk.imageviewer.utils.JSONResourceReader;
-import com.andrutyk.imageviewer.utils.PrefUtils;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,8 +26,8 @@ public class FindItemsInteractorImpl implements FindItemsInteractor {
     }
 
     @Override
-    public void findItems(String category, OnFinishedListener listener) {
-        listener.onFinished(createListFromJSON(category));
+    public void findItems(String category,boolean sortByOrdinal, OnFinishedListener listener) {
+        listener.onFinished(createListFromJSON(category, sortByOrdinal));
     }
 
     @Override
@@ -45,9 +42,9 @@ public class FindItemsInteractorImpl implements FindItemsInteractor {
         resourceReader.setComment(id, value);
     }
 
-    private List<JSONObject> createListFromJSON(String category) {
+    private List<JSONObject> createListFromJSON(String category, boolean sortByOrdinal) {
         JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
-        ArrayList<JSONObject> images = resourceReader.getImagesByCategory(category);
+        ArrayList<JSONObject> images = resourceReader.getImagesByCategory(category, sortByOrdinal);
         return images;
     }
 }
