@@ -26,20 +26,15 @@ public class FindItemsInteractorImpl implements FindItemsInteractor {
     }
 
     @Override
-    public void findItems(String category,boolean sortByOrdinal, OnFinishedListener listener) {
+    public void findItems(String category, boolean sortByOrdinal, OnFinishedListener listener) {
         listener.onFinished(createListFromJSON(category, sortByOrdinal));
     }
 
     @Override
-    public void setFavorite(int id, boolean value, OnFinishedListener listener) {
+    public void setFavorite(int id, boolean value, String comment, OnFinishedListener listener) {
         JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
         resourceReader.setFavorite(id, value);
-    }
-
-    @Override
-    public void setComment(int id, String value, OnFinishedListener listener) {
-        JSONResourceReader resourceReader = new JSONResourceReader(context, R.raw.images);
-        resourceReader.setComment(id, value);
+        resourceReader.setComment(id, comment);
     }
 
     private List<JSONObject> createListFromJSON(String category, boolean sortByOrdinal) {

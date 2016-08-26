@@ -4,15 +4,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrutyk.imageviewer.R;
@@ -29,18 +26,18 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 public class PageFragment extends Fragment {
 
     private static final String ARGUMENT_PAGE_URL = "arg_page_url";
-    private static final String ARGUMENT_PAGE_CATEGORY = "arg_page_category";
+    private static final String ARGUMENT_PAGE_COMMENT = "arg_page_comment";
 
     private String url;
-    private boolean isFavorite;
+    private String comment;
 
     private DisplayImageOptions options;
 
-    public static PageFragment newInstance(String url, boolean isFavorite) {
+    public static PageFragment newInstance(String url, String comment) {
         PageFragment pageFragment = new PageFragment();
         Bundle arguments = new Bundle();
         arguments.putString(ARGUMENT_PAGE_URL, url);
-        arguments.putBoolean(ARGUMENT_PAGE_CATEGORY, isFavorite);
+        arguments.putString(ARGUMENT_PAGE_COMMENT, comment);
         pageFragment.setArguments(arguments);
         return pageFragment;
     }
@@ -49,7 +46,7 @@ public class PageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         url = getArguments().getString(ARGUMENT_PAGE_URL);
-        isFavorite = getArguments().getBoolean(ARGUMENT_PAGE_CATEGORY);
+        comment = getArguments().getString(ARGUMENT_PAGE_COMMENT);
     }
 
     @Nullable
@@ -60,6 +57,8 @@ public class PageFragment extends Fragment {
         final ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
         registerForContextMenu(ivImage);
         final ProgressBar pbLoading = (ProgressBar) view.findViewById(R.id.pbLoading);
+        TextView tvCommentFragment = (TextView) view.findViewById(R.id.tvCommentFragment);
+        tvCommentFragment.setText(comment);
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.mipmap.ic_empty)
                 .showImageOnFail(R.mipmap.ic_error)

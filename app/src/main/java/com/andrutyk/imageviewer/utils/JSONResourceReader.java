@@ -37,7 +37,7 @@ public class JSONResourceReader {
      * objects from this resource.
      *
      * @param context An application {@link Context} object.
-     * @param id        The id for the resource to load, typically held in the raw/ folder.
+     * @param id      The id for the resource to load, typically held in the raw/ folder.
      */
     public JSONResourceReader(Context context, int id) {
         InputStream resourceReader = context.getResources().openRawResource(id);
@@ -71,9 +71,9 @@ public class JSONResourceReader {
             for (int i = 0; i < jsonArrayImages.length(); i++) {
                 JSONObject imageObject = jsonArrayImages.getJSONObject(i);
                 boolean imageIsFavorite = prefUtils.isFavorite(i);
-                imageObject.put(JSON_PROPER_IS_FAVORITE , imageIsFavorite);
-                imageObject.put(JSON_COMMENT , prefUtils.getComment(i));
-                if(category.equals(FindItemsInteractorImpl.CATEGORY_ALL)) {
+                imageObject.put(JSON_PROPER_IS_FAVORITE, imageIsFavorite);
+                imageObject.put(JSON_COMMENT, prefUtils.getComment(i));
+                if (category.equals(FindItemsInteractorImpl.CATEGORY_ALL)) {
                     arrayList.add(imageObject);
                 } else if (category.equals(FindItemsInteractorImpl.CATEGORY_FAVORITE) && imageIsFavorite) {
                     arrayList.add(imageObject);

@@ -55,7 +55,7 @@ public class PrefUtils {
     }
 
     public void setComment(int id, String value) {
-        putBoolean(PREF_COMMENT + String.valueOf(id), value);
+        putString(PREF_COMMENT + String.valueOf(id), value);
         apply();
     }
 
@@ -81,8 +81,7 @@ public class PrefUtils {
      * Get a string preference
      *
      * @param key
-     * @param defValue
-     *            The string to return if the preference was not set
+     * @param defValue The string to return if the preference was not set
      * @return
      */
     private String getString(String key, String defValue) {
@@ -106,10 +105,8 @@ public class PrefUtils {
     }
 
     /**
-     *
      * @param key
      * @param defValue
-     *
      * @return
      */
     private boolean getBoolean(String key, boolean defValue) {

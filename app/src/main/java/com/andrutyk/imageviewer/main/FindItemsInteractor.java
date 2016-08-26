@@ -17,7 +17,5 @@ public interface FindItemsInteractor {
 
     void findItems(String category, boolean sortByOrdinal, OnFinishedListener listener);
 
-    void setFavorite(int id, boolean value, OnFinishedListener listener);
-
-    void setComment(int id, String value, OnFinishedListener listener);
+    void setFavorite(int id, boolean value, String comment, OnFinishedListener listener);
 }

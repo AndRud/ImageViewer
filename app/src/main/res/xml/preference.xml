@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory
-        android:title="@string/category_time">
+    <PreferenceCategory android:title="@string/category_time">
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="@string/turn_auto_key"
-            android:title="@string/turn_auto_title"
             android:summary="@string/turn_auto_summary"
-            android:defaultValue="true"/>
+            android:title="@string/turn_auto_title" />
         <EditTextPreference
-            android:key="@string/time_to_slide_key"
-            android:title="@string/time_to_slide_title"
-            android:summary="@string/time_to_slide_summary"
             android:defaultValue="5"
+            android:dependency="@string/turn_auto_key"
             android:inputType="number"
-            android:dependency="@string/turn_auto_key"/>
+            android:key="@string/time_to_slide_key"
+            android:summary="@string/time_to_slide_summary"
+            android:title="@string/time_to_slide_title" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/category_order">
+    <PreferenceCategory android:title="@string/category_order">
         <ListPreference
-            android:key="@string/order_key"
-            android:summary="@string/order_title"
-            android:title="@string/order_summary"
+            android:defaultValue="@string/order_def_value"
             android:entries="@array/order_names"
             android:entryValues="@array/order_values"
-            android:defaultValue="@string/order_def_value"/>
+            android:key="@string/order_key"
+            android:summary="@string/order_title"
+            android:title="@string/order_summary" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/category_anim">
+    <PreferenceCategory android:title="@string/category_anim">
         <ListPreference
-            android:key="@string/anim_key"
-            android:summary="@string/anim_summary"
-            android:title="@string/anim_title"
+            android:defaultValue="@string/anim_def_value"
             android:entries="@array/anim_names"
             android:entryValues="@array/anim_values"
-            android:defaultValue="@string/anim_def_value"/>
+            android:key="@string/anim_key"
+            android:summary="@string/anim_summary"
+            android:title="@string/anim_title" />
     </PreferenceCategory>
 </PreferenceScreen>

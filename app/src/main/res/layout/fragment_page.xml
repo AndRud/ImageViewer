@@ -3,21 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".image_fragment.PageFragment">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/ivImage"
+            style="?android:textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:adjustViewBounds="true"
-            style="?android:textAppearanceMedium"/>
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:id="@+id/tvCommentFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorAccent" />
+
         <ProgressBar
             android:id="@+id/pbLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </RelativeLayout>
 </FrameLayout>

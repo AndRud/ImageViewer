@@ -27,14 +27,23 @@ public class ImagesPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         String url = "";
-        boolean isFavorite = false;
+        String comment = "";
         try {
             url = data.get(position).getString("url");
-            isFavorite = data.get(position).getBoolean("isFavorite");
+            comment = data.get(position).getString("comment");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return PageFragment.newInstance(url, isFavorite);
+        return PageFragment.newInstance(url, comment);
+    }
+
+    public int getID(int position) {
+        try {
+            return data.get(position).getInt("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     @Override

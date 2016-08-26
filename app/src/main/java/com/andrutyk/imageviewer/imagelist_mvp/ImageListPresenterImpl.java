@@ -1,6 +1,6 @@
-package com.andrutyk.imageviewer.main;
+package com.andrutyk.imageviewer.imagelist_mvp;
 
-import android.content.Context;
+import com.andrutyk.imageviewer.main.FindItemsInteractor;
 
 import org.json.JSONObject;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by admin on 22.08.2016.
  */
-public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInteractor.OnFinishedListener{
+public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInteractor.OnFinishedListener {
 
     private ImageListView imageListView;
     private FindItemsInteractor findItemsInteractor;
@@ -25,13 +25,8 @@ public class ImageListPresenterImpl implements ImageListPresenter, FindItemsInte
     }
 
     @Override
-    public void setFavorite(int position, boolean isFavorite) {
-        findItemsInteractor.setFavorite(position, isFavorite, this);
-    }
-
-    @Override
-    public void setComment(int position, String comment) {
-        findItemsInteractor.setComment(position, comment, this);
+    public void setFavorite(int position, boolean isFavorite, String comment) {
+        findItemsInteractor.setFavorite(position, isFavorite, comment, this);
     }
 
     @Override
