@@ -21,6 +21,8 @@ import com.andrutyk.imageviewer.R;
 import com.andrutyk.imageviewer.image_fragment.ImagePagerFragment;
 import com.andrutyk.imageviewer.preference.ImagePreferenceActivity;
 
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private final static String FRAGMENT_TAG = "main_fragment";
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private Fragment fragmentMain;
 
     private String[] categories;
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle drawerToggle;
-    private ListView drawerList;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle drawerToggle;
+    ListView drawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
