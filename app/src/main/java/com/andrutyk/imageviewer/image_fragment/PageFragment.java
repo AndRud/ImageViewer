@@ -20,6 +20,10 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by admin on 23.08.2016.
  */
@@ -32,6 +36,12 @@ public class PageFragment extends Fragment {
     private String comment;
 
     private DisplayImageOptions options;
+
+    private Unbinder unbinder;
+
+    @BindView(R.id.ivImage) ImageView ivImage;
+    @BindView(R.id.pbLoading) ProgressBar pbLoading;
+    @BindView(R.id.tvCommentFragment) TextView tvCommentFragment;
 
     public static PageFragment newInstance(String url, String comment) {
         PageFragment pageFragment = new PageFragment();
@@ -54,10 +64,8 @@ public class PageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_page, null);
-        final ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
+        unbinder = ButterKnife.bind(this, view);
         registerForContextMenu(ivImage);
-        final ProgressBar pbLoading = (ProgressBar) view.findViewById(R.id.pbLoading);
-        TextView tvCommentFragment = (TextView) view.findViewById(R.id.tvCommentFragment);
         tvCommentFragment.setText(comment);
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.mipmap.ic_empty)
@@ -89,6 +97,12 @@ public class PageFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
     }
 
     public String getErrMessage(FailReason failReason) {

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
@@ -27,4 +29,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.android.support:support-v4:24.2.0'
+    //compile 'net.orfjackal.retrolambda:retrolambda-maven-plugin:2.3.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }
